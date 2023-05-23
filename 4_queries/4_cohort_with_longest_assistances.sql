@@ -1,7 +1,7 @@
-SELECT c.name AS name, AVG(ar.completed_at - ar.started_at) AS average_assistance_request_time
-FROM assistance_requests ar
-JOIN students s ON ar.student_id = s.id
-JOIN cohorts c ON s.cohort_id = c.id
-GROUP BY c.name
-ORDER BY average_assistance_request_time DESC
+SELECT cohorts.name, avg(completed_at - started_at) as average_assistance_time
+FROM assistance_requests 
+JOIN students ON students.id = assistance_requests.student_id
+JOIN cohorts ON cohorts.id = cohort_id
+GROUP BY cohorts.name
+ORDER BY average_assistance_time DESC
 LIMIT 1;
